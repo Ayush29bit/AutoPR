@@ -1,0 +1,33 @@
+# LLM frameworks
+langchain
+langchain-core
+langchain-community
+langgraph
+
+# LLM providers
+openai
+tiktoken
+
+# Embeddings + vector search
+faiss-cpu
+chromadb
+sentence-transformers
+
+# Backend API
+fastapi
+uvicorn
+
+# GitHub integration
+PyGithub
+gitpython
+
+# Data handling
+pydantic
+python-dotenv
+
+# Utilities
+requests
+tqdm
+
+# Testing
+pytest
