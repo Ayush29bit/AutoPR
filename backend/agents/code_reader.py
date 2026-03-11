@@ -5,7 +5,7 @@ from backend.tools.file_tools import list_repo_files
 def code_reader(issue, repo_path):
 
     files = list_repo_files(repo_path)
-
+    
     # limit file list so prompt doesn't explode
     preview = "\n".join(files[:20])
 
