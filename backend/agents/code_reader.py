@@ -6,8 +6,7 @@ def code_reader(issue, repo_path):
 
     files = list_repo_files(repo_path)
     
-    # limit file list so prompt doesn't explode
-    preview = "\n".join(files[:20])
+    preview = "\n".join(files[:30])
 
     prompt = f"""
 You are a senior software engineer analyzing a repository.
