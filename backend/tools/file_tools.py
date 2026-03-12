@@ -1,10 +1,7 @@
 import os
 
-
 def list_repo_files(repo_path):
-    """
-    Returns a list of files inside the repository
-    """
+
     file_list = []
 
     for root, dirs, files in os.walk(repo_path):
@@ -16,9 +13,6 @@ def list_repo_files(repo_path):
 
 
 def read_file(file_path):
-    """
-    Reads and returns file contents
-    """
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             return f.read()
