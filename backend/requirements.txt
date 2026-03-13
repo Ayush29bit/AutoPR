@@ -5,8 +5,9 @@ langchain-community
 langgraph
 
 # LLM providers
-openai
+groq
 tiktoken
+ollama
 
 # Embeddings + vector search
 faiss-cpu
@@ -31,3 +32,4 @@ tqdm
 
 # Testing
 pytest
+
