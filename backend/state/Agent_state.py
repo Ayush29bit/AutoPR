@@ -6,3 +6,4 @@ class AgentState(TypedDict):
     plan: str
     patch: str
     tests: str
+    pr_url: str 

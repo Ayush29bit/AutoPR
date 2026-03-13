@@ -20,13 +20,17 @@ Output
 
 ### What each agent does 
 
-CodeReader → finds relevant files
-Planner → generates fix strategy
-CodeWriter → generates code patch
+```
+CodeReader → finds relevant files 
+Planner → generates fix strategy 
+CodeWriter → generates code patch 
 TestWriter → generates tests
 PROpener → creates PR
 
+```
+
 ### Workflow 
+
 ```
 GitHub Issue
      ↓

@@ -6,11 +6,10 @@ def list_repo_files(repo_path):
 
     for root, dirs, files in os.walk(repo_path):
         for file in files:
-            if file.endswith(".py"):
+            if file.endswith([".py", ".js", ".java", ".cpp", ".c", ".h", ".ts", ".go", ".yaml"]):
                 file_list.append(os.path.join(root, file))
 
     return file_list
-
 
 def read_file(file_path):
     try:
