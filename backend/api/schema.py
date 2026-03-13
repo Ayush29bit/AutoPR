@@ -43,3 +43,13 @@ class RunStatus(BaseModel):
     tests: Optional[str] = None
     pr_url: Optional[str] = None
     error: Optional[str] = None
+
+
+class CreateRunResponse(BaseModel):
+    run_id:str
+    message:str
+    status:RunState
+
+class RunListResponse(BaseModel):
+    runs: List[RunStatus]
+    total: int
