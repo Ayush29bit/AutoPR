@@ -33,3 +33,5 @@ tqdm
 # Testing
 pytest
 
+pydantic-settings
+
