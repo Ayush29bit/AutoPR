@@ -39,7 +39,6 @@ async def _run_pipeline(run_id:str, request: CreateRunRequest):
             error=str(exc),
         )
  
- 
 @router.post("/issues/run", response_model=CreateRunResponse, status_code=202)
 async def create_issue_run(
     request: CreateRunRequest,

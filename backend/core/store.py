@@ -3,12 +3,12 @@ from datetime import datetime
 from typing import Optional, Dict, Any
 from backend.api.schema import RunStatus, RunState
 
-_runs: Dict[str, RunRecord] = {}
+_runs: Dict[str, RunState] = {}
  
  
 def create_run(issue: str, repo_path: str) -> RunState:
     run_id = str(uuid.uuid4())
-    record = RunRecord(
+    record = RunState(
         run_id=run_id,
         issue=issue,
         repo_path=repo_path,
