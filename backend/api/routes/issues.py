@@ -1,6 +1,6 @@
 import asyncio
 from datetime import datetime 
-from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
+from fastapi import APIRouter, BackgroundTasks
 from backend.api.schema import RunStatus, CreateRunRequest, CreateRunResponse
 from backend.core.config import settings
 from backend.core.store import create_run, update_run_status
