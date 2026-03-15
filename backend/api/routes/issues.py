@@ -15,9 +15,9 @@ async def _run_pipeline(run_id:str, request: CreateRunRequest):
                   run_pipeline, 
                   run_id=run_id,
                     issue=request.issue,
-                    repo_path=request.repo_path
-                    github_token=settings.GITHUB_TOKEN or request.github_token
-                    gtihub_repo=request.github_repo or settings.GITHUB_REPO
+                    repo_path=request.repo_path,
+                    github_token=settings.GITHUB_TOKEN or request.github_token,
+                    gtihub_repo=request.github_repo or settings.GITHUB_REPO,
             )
         
         update_run_status(

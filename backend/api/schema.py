@@ -50,6 +50,9 @@ class CreateRunResponse(BaseModel):
     message:str
     status:RunState
 
+class RunDetailResponse(RunStatus):
+    pass
+
 class RunListResponse(BaseModel):
     runs: List[RunStatus]
     total: int

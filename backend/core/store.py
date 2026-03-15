@@ -23,7 +23,7 @@ def get_run(run_id: str) -> Optional[RunState]:
     return _runs.get(run_id)
  
  
-def update_run(run_id: str, **kwargs) -> Optional[RunState]:
+def update_run_status(run_id: str, **kwargs) -> Optional[RunState]:
     record = _runs.get(run_id)
     if not record:
         return None
