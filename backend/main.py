@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from contextlib import asynccontextmanager
 
-from backend.api.routes import health, runs, issues
+from backend.api.routes import health, runs, issues, home
 from backend.core.config import settings
 
 @asynccontextmanager
@@ -30,6 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(home.router,tags=["Home"])
 app.include_router(health.router, prefix="/api/v1", tags=["Health"])
 app.include_router(runs.router, prefix="/api/v1", tags=["Runs"])
 app.include_router(issues.router, prefix="/api/v1", tags=["Issues"])
