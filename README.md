@@ -1,9 +1,25 @@
-## AutoPR
-
-AutoPR is a multi-agent AI system that autonomously resolves GitHub issues by analyzing the repository, generating code patches, writing tests, and opening pull requests.
-
-Built using LangGraph, AutoPR orchestrates specialized AI agents that collaborate to perform real-world software engineering workflows.
-
+  <div class="hero">
+    <div class="hero-glow"></div>
+    <pre class="ascii-logo"> █████╗ ██╗   ██╗████████╗ ██████╗ ██████╗ ██████╗
+██╔══██╗██║   ██║╚══██╔══╝██╔═══██╗██╔══██╗██╔══██╗
+███████║██║   ██║   ██║   ██║   ██║██████╔╝██████╔╝
+██╔══██║██║   ██║   ██║   ██║   ██║██╔═══╝ ██╔══██╗
+██║  ██║╚██████╔╝   ██║   ╚██████╔╝██║     ██║  ██║
+╚═╝  ╚═╝ ╚═════╝    ╚═╝    ╚═════╝ ╚═╝     ╚═╝  ╚═╝</pre>
+ 
+    <p class="tagline">A <strong>multi-agent orchestration system</strong> that reads your GitHub issues<br/>and ships the fix — automatically.</p>
+ 
+    <div class="badges">
+      <span class="badge badge-python">🐍 Python 3.11+</span>
+      <span class="badge badge-fastapi">⚡ FastAPI</span>
+      <span class="badge badge-lg">🔗 LangGraph</span>
+      <span class="badge badge-ollama">🦙 Ollama</span>
+      <span class="badge badge-gh">🐙 GitHub API</span>
+      <span class="badge badge-docker">🐳 Docker</span>
+    </div>
+  </div>
+ 
+  <div class="divider"></div>
 ### Example Workflow
 
 Input GitHub Issue
