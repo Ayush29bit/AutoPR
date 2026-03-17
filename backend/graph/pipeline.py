@@ -71,6 +71,33 @@ def build_graph():
     graph.add_edge("pr_opener",   END)
  
     return graph.compile()
+
+def run_graph(
+    run_id: str,
+    issue: str,
+    repo_path: str,
+    github_repo: str = "",
+    github_token: str = "",
+) -> dict:
+    graph = build_graph()
+ 
+    initial_state: AgentState = {
+        "issue": issue,
+        "repo_path": repo_path,
+        "github_repo": github_repo,
+        "github_token": github_token,
+        "repo_files": [],
+        "relevant_files": [],
+        "code_context": "",
+        "plan": "",
+        "patch": "",
+        "tests": "",
+        "pr_url": None,
+        "error": None,
+    }
+ 
+    final_state = graph.invoke(initial_state)
+    return dict(final_state) 
  
  
 
