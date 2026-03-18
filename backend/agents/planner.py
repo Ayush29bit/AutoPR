@@ -2,6 +2,15 @@ import ollama
 from backend.core.config import settings
 
 def planner(state: dict) -> dict:
+    """
+    AGENT 02 — Planner
+ 
+    What it does:
+    - Reads the issue + the relevant code context from Agent 01
+    - Thinks through the problem carefully
+    - Returns a numbered, step-by-step plan for fixing the issue
+    - Returns: plan
+    """
     issue = state["issue"]
     code_context = state["code_context"]
     relevant_files = state["relevant_files"]
