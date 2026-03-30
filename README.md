@@ -133,6 +133,21 @@ Built with **LangGraph StateGraph** for deterministic agent orchestration, **Fas
                     └─────────────────┘
 ```
 
+## Example Workflow
+
+Input Issue:
+"Fix API timeout in user service"
+
+Steps:
+1. Retrieval agent fetches relevant code
+2. Planning agent identifies fix
+3. Code agent generates patch
+4. PR agent creates pull request
+
+Output:
+- PR created with fix
+- Tests generated
+
 ---
 
 ## Project Structure
@@ -322,8 +337,3 @@ The backend starts on **port 8000**.
 
 ---
 
-<div align="center">
-
-Built to get you out of the "toy project" category. ⚡
-
-</div>
