@@ -6,33 +6,28 @@
   html, body, #root {
     height: 100%;
     min-height: 100vh;
-    background-color: #0a0c0f;
-    color: #e8edf5;
+    background-color: #030712;
+    color: #f1f5f9;
     font-family: "DM Sans", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #252d3a #111318;
+    scrollbar-color: #1f2937 #111827;
   }
-  *::-webkit-scrollbar { width: 4px; height: 4px; }
-  *::-webkit-scrollbar-track { background: #111318; }
-  *::-webkit-scrollbar-thumb { background: #252d3a; border-radius: 2px; }
+  *::-webkit-scrollbar       { width: 4px; height: 4px; }
+  *::-webkit-scrollbar-track { background: #111827; }
+  *::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 2px; }
+  *::-webkit-scrollbar-thumb:hover { background: #374151; }
 
-  ::selection { background: rgba(0,229,160,0.2); color: #00e5a0; }
+  ::selection {
+    background: rgba(59, 130, 246, 0.25);
+    color: #93c5fd;
+  }
 }
 
 @layer utilities {
-  .scanlines::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(
-      0deg, transparent, transparent 2px,
-      rgba(0,0,0,0.015) 2px, rgba(0,0,0,0.015) 4px
-    );
-    pointer-events: none;
-    z-index: 9999;
-  }
-  .glow-accent { box-shadow: 0 0 12px rgba(0,229,160,0.15); }
+  .glow-accent { box-shadow: 0 0 12px rgba(0, 229, 160, 0.15); }
 }
