@@ -8,7 +8,7 @@ export default function Spinner({ className = '' }) {
     return () => clearInterval(iv)
   }, [])
   return (
-    <span className={`font-mono text-accent ${className}`}>
+    <span className={`font-mono text-blue-400 ${className}`}>
       {SPINNER_FRAMES[frame]}
     </span>
   )
