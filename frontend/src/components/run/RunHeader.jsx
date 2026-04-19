@@ -1,4 +1,4 @@
-import { formatDuration, shortId, truncate } from '../../utils'
+import { shortId, truncate } from '../../utils'
 import Badge from '../ui/Badge'
 import Spinner from '../ui/Spinner'
 
@@ -10,56 +10,35 @@ export default function RunHeader({ run }) {
   const isFailed    = run.status === 'failed'
 
   return (
-    <div className="mb-6 pb-4 border-b border-border-dim animate-fade-in">
-      {/* top row */}
-      <div className="flex items-center justify-between mb-2">
-        <div className="flex items-center gap-3">
-          <span className="font-mono text-xs text-ink-muted">
-            RUN #{shortId(run.run_id)}
-          </span>
+    <div className="mb-6 pb-5 border-b border-gray-800 animate-fade-in">
+      <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center gap-2.5">
+          <span className="text-xs text-gray-600 font-mono">#{shortId(run.run_id)}</span>
           <Badge status={run.status} />
         </div>
 
-        {/* live indicator */}
         {isRunning && (
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-status-info animate-pulse" />
-            <span className="font-mono text-xs text-status-info">live</span>
+          <div className="flex items-center gap-2 text-xs text-blue-400">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+            <span>Live</span>
             <Spinner />
           </div>
         )}
-
-        {isCompleted && (
-          <span className="font-mono text-xs text-status-success">
-            ✓ pipeline complete
-          </span>
-        )}
-
-        {isFailed && (
-          <span className="font-mono text-xs text-status-error">
-            ✗ pipeline failed
-          </span>
-        )}
+        {isCompleted && <span className="text-xs text-emerald-400">Pipeline complete</span>}
+        {isFailed    && <span className="text-xs text-red-400">Pipeline failed</span>}
       </div>
 
-      {/* issue text */}
-      <p className="font-mono text-sm text-ink-primary leading-relaxed">
-        › {truncate(run.issue, 120)}
+      <p className="text-sm text-gray-300 leading-relaxed">
+        {truncate(run.issue, 140)}
       </p>
 
-      {/* repo path */}
       {run.repo_path && (
-        <p className="font-mono text-xs text-ink-muted mt-1">
-          {run.repo_path}
-        </p>
+        <p className="text-xs text-gray-600 font-mono mt-1.5">{run.repo_path}</p>
       )}
 
-      {/* error banner */}
       {isFailed && run.error && (
-        <div className="mt-3 px-3 py-2 rounded border border-status-error/30 bg-status-error/10">
-          <span className="font-mono text-xs text-status-error">
-            ✗ {run.error}
-          </span>
+        <div className="mt-3 px-3 py-2.5 rounded-lg border border-red-800/50 bg-red-900/20 text-xs text-red-400">
+          {run.error}
         </div>
       )}
     </div>
