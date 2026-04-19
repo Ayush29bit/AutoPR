@@ -1,17 +1,19 @@
 import IssueForm from '../components/form/IssueForm'
- 
+
 export default function HomePage() {
   return (
-    <div className="min-h-full flex flex-col justify-center py-8">
-      {/* terminal welcome block */}
-      <div className="max-w-2xl mx-auto w-full mb-8 font-mono text-xs text-ink-muted space-y-1">
-        <div><span className="text-accent">$</span> autopr <span className="text-ink-secondary">--version 1.0.0</span></div>
-        <div><span className="text-accent">$</span> agents loaded <span className="text-status-success">✓</span></div>
-        <div><span className="text-accent">$</span> ollama <span className="text-ink-secondary">ready · llama3</span></div>
-        <div><span className="text-accent">$</span> awaiting issue...</div>
+    <div className="min-h-full flex items-start justify-center pt-12 pb-16 px-4">
+      <div className="w-full max-w-xl">
+        <div className="mb-8">
+          <h1 className="text-2xl font-semibold text-gray-100 tracking-tight">
+            New pipeline run
+          </h1>
+          <p className="mt-1.5 text-sm text-gray-500">
+            Describe a GitHub issue. AutoPR will read your codebase, plan a fix, write the code, and open a PR.
+          </p>
+        </div>
+        <IssueForm />
       </div>
-      <IssueForm />
     </div>
   )
 }
- 

@@ -6,49 +6,37 @@ import ResultsPanel from '../components/run/ResultsPanel'
 import Spinner from '../components/ui/Spinner'
 
 export default function RunPage() {
-  const { runId }    = useParams()
+  const { runId }      = useParams()
   const { run, error } = useRun(runId)
 
   if (error) return (
-    <div className="max-w-2xl mx-auto py-8">
-      <div className="font-mono text-sm text-status-error px-4 py-3 border border-status-error/30 rounded bg-status-error/10">
-        ✗ {error}
+    <div className="max-w-xl mx-auto px-4 py-10">
+      <div className="px-4 py-3 rounded-xl border border-red-800/50 bg-red-900/20 text-sm text-red-400 mb-4">
+        {error}
       </div>
-      <Link to="/" className="block mt-4 font-mono text-xs text-ink-muted hover:text-accent transition-colors">
-        ← back to new run
-      </Link>
+      <Link to="/" className="text-xs text-gray-600 hover:text-gray-300 transition-colors">← New run</Link>
     </div>
   )
 
   if (!run) return (
-    <div className="flex items-center gap-3 py-8 font-mono text-sm text-ink-muted">
-      <Spinner /> loading run...
+    <div className="flex items-center gap-2 px-6 py-10 text-sm text-gray-600">
+      <Spinner /> Loading...
     </div>
   )
 
-  const isCompleted = run.status === 'completed'
-
   return (
-    <div className="max-w-2xl mx-auto animate-fade-in">
-      {/* completion flash overlay */}
-      {isCompleted && (
-        <div
-          className="fixed inset-0 bg-accent pointer-events-none animate-flash"
-          style={{ zIndex: 50 }}
-        />
+    <div className="max-w-xl mx-auto px-4 py-8 animate-fade-in">
+      {run.status === 'completed' && (
+        <div className="fixed inset-0 bg-emerald-500 pointer-events-none animate-flash" style={{ zIndex: 50 }} />
       )}
 
-      {/* back link */}
-      <Link
-        to="/"
-        className="inline-block font-mono text-xs text-ink-muted hover:text-accent transition-colors mb-4"
-      >
-        ← new run
+      <Link to="/" className="inline-block text-xs text-gray-600 hover:text-gray-300 transition-colors mb-6">
+        ← New run
       </Link>
 
       <RunHeader run={run} />
       <AgentPanel run={run} />
-      {isCompleted && <ResultsPanel run={run} />}
+      {run.status === 'completed' && <ResultsPanel run={run} />}
     </div>
   )
 }
