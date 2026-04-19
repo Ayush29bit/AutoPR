@@ -2,23 +2,9 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../../api/client'
 
-const TITLE = 'AutoPR'
-
 export default function Header() {
-  const [displayed, setDisplayed] = useState('')
-  const [online, setOnline]       = useState(null)
+  const [online, setOnline] = useState(null)
 
-  // typewriter effect on mount
-  useEffect(() => {
-    let i = 0
-    const iv = setInterval(() => {
-      setDisplayed(TITLE.slice(0, ++i))
-      if (i >= TITLE.length) clearInterval(iv)
-    }, 80)
-    return () => clearInterval(iv)
-  }, [])
-
-  // poll health every 30s
   useEffect(() => {
     const check = () => api.health().then(() => setOnline(true)).catch(() => setOnline(false))
     check()
@@ -27,30 +13,27 @@ export default function Header() {
   }, [])
 
   return (
-    <header className="flex items-center justify-between px-6 h-12 border-b border-border-dim bg-bg-secondary shrink-0">
-      {/* logo */}
-      <Link to="/" className="flex items-center gap-3 group">
-        <span className="font-mono font-bold text-accent text-sm tracking-widest">
-          {displayed}
-          <span className="animate-blink">█</span>
-        </span>
-        <span className="text-ink-muted font-mono text-xs">v1.0.0</span>
+    <header className="flex items-center justify-between px-5 h-12 border-b border-gray-800/80 bg-gray-950 shrink-0">
+      <Link to="/" className="flex items-center gap-2.5">
+        <div className="w-5 h-5 rounded-md bg-blue-600 flex items-center justify-center shrink-0">
+          <span className="text-white font-bold text-xs">A</span>
+        </div>
+        <span className="font-semibold text-gray-100 text-sm tracking-tight">AutoPR</span>
+        <span className="text-gray-700 text-xs font-mono">v1.0.0</span>
       </Link>
 
-      {/* center label */}
-      <span className="font-mono text-xs text-ink-muted tracking-widest uppercase hidden md:block">
+      <span className="text-xs text-gray-600 hidden md:block">
         Multi-Agent Issue Resolver
       </span>
 
-      {/* status indicator */}
       <div className="flex items-center gap-2">
-        <span className={`w-1.5 h-1.5 rounded-full ${
-          online === null ? 'bg-ink-muted' :
-          online          ? 'bg-status-success animate-pulse-accent' :
-                            'bg-status-error'
+        <span className={`w-1.5 h-1.5 rounded-full transition-colors ${
+          online === null ? 'bg-gray-700' :
+          online          ? 'bg-emerald-500' :
+                            'bg-red-500'
         }`} />
-        <span className="font-mono text-xs text-ink-muted">
-          {online === null ? 'connecting' : online ? 'backend online' : 'backend offline'}
+        <span className="text-xs text-gray-600">
+          {online === null ? 'connecting' : online ? 'online' : 'offline'}
         </span>
       </div>
     </header>
