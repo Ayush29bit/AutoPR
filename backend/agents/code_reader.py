@@ -1,5 +1,7 @@
-import ollama
-from backend.tools.file_tools import list_repo_files,read_file
+import ast
+from backend.tools.file_tools import list_repo_files,read_file,normalize_path
+from backend.core.llm import chat 
+from backend.retrieval.retriever import retrieve_relevant_files
 from backend.core.config import settings
 
 
@@ -13,7 +15,14 @@ def code_reader(state: dict) -> dict:
     3. LLM picks which files are most relevant
     4. Reads those files and stitches their content together
     5. Returns: repo_files, relevant_files, code_context
+
+    Primary path:  RAG — Google embeddings + ChromaDB find relevant chunks
+    Fallback path: LLM picks from file list (if RAG returns nothing)
+ 
+    Both paths normalize file paths to forward slashes so Windows paths
+    with backslashes don't cause silent mismatches.
     """
+    
     issue = state["issue"]
     repo_path = state["repo_path"]
  
