@@ -5,16 +5,16 @@ class Settings(BaseSettings):
     APP_NAME: str = "AutoPR"
     
     # Groq LLM
-    GROQ_API_KEY: str = ""
-    GROQ_MODEL: str = "llama3-8b-8192"  
+    GROQ_API_KEY: str = "GROQ_API_KEY"
+    GROQ_MODEL: str = "openai/gpt-oss-20b"
 
     # Google Embeddings
-    GOOGLE_API_KEY: str = ""
-    GOOGLE_EMBEDDING_MODEL: str = "models/text-embedding-004"
+    GOOGLE_API_KEY: str = "GOOGLE_API_KEY"
+    GOOGLE_EMBEDDING_MODEL: str = "gemini-embedding-001"
 
     # GITHUB INTEGRATION
-    GITHUB_TOKEN: str = ""
-    GITHUB_REPO: str = ""    
+    GITHUB_TOKEN: str = "GITHUB_TOKEN"
+    GITHUB_REPO: str = "GITHUB_REPO"
 
     # CHROMA DB LOCAL
     CHROMA_PERSIST_DIR: str = "./chroma_db"    
