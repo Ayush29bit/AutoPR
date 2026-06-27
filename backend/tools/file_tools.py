@@ -1,14 +1,53 @@
 import os
 
-supported_extensions = { ".py", ".js", ".ts", ".jsx", ".tsx",
-    ".go", ".java", ".rb", ".rs",
-    ".yaml", ".yml", ".json", ".toml",
-    ".md", ".env.example"}
+# Supported file extensions fpr code files.
+# Covers the vast majority of real-world codebases.
+# Grouped by language family for readability.
 
-ignored_dirs={
-     "__pycache__", ".git", "node_modules",
-    ".venv", "venv", "env", "dist", "build",
-    ".mypy_cache", ".pytest_cache",
+SUPPORTED_EXTENSIONS = {
+    # Python
+    ".py", ".pyi",
+    # JavaScript / TypeScript
+    ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs",
+    # Go
+    ".go",
+    # Java / Kotlin / Scala
+    ".java", ".kt", ".kts", ".scala",
+    # C / C++ / C#
+    ".c", ".h", ".cpp", ".hpp", ".cs",
+    # Rust
+    ".rs",
+    # Ruby
+    ".rb", ".erb",
+    # PHP
+    ".php",
+    # Swift
+    ".swift",
+    # Shell
+    ".sh", ".bash", ".zsh", ".fish",
+    # Web
+    ".html", ".htm", ".css", ".scss", ".sass",
+    # Config / Infrastructure
+    ".yaml", ".yml", ".json", ".toml", ".ini",
+    ".env.example", ".tf", ".hcl",
+    # Docs
+    ".md", ".mdx", ".rst", ".txt",
+    # Docker / CI
+    "Dockerfile", ".dockerignore",
+    ".github",
+}
+
+IGNORED_DIRS = {
+    "__pycache__", ".git", ".svn", ".hg",
+    "node_modules", ".npm",
+    ".venv", "venv", "env", ".env",
+    "dist", "build", "out", "target", "bin", "obj",
+    ".mypy_cache", ".pytest_cache", ".ruff_cache",
+    ".idea", ".vscode",
+    "coverage", ".nyc_output",
+    "vendor",                          # Go, PHP
+    "Pods",                            # iOS
+    ".gradle", ".mvn",                 # Java
 }
 
 def list_repo_files(repo_path:str) -> list[str]:
@@ -19,13 +58,19 @@ def list_repo_files(repo_path:str) -> list[str]:
     file_list = []
 
     for root, dirs, files in os.walk(repo_path):
-        dirs[:] = [d for d in dirs if d not in ignored_dirs]
+        dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
         for file in files:
             _, ext = os.path.splitext(file)
-            if ext in supported_extensions:
+            if ext in SUPPORTED_EXTENSIONS or file in SUPPORTED_EXTENSIONS:
                 file_list.append(os.path.join(root, file))
 
     return file_list
+
+IGNORED_FILES = {
+    "package-lock.json", "yarn.lock", "pnpm-lock.yaml",
+    "poetry.lock", "Pipfile.lock", "Gemfile.lock",
+    "Cargo.lock", "go.sum",
+}
 
 def read_file(file_path:str) -> str:
     """
