@@ -14,7 +14,7 @@ faiss-cpu
 chromadb
 sentence-transformers
 
-google-generativeai
+google-genai>=1.0.0
 
 # Backend API
 fastapi
