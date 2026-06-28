@@ -8,7 +8,7 @@ from backend.core.config import settings
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    print(f"🚀 AutoPR backend starting — model: {settings.OLLAMA_MODEL}")
+    print(f"🚀 AutoPR backend starting")
     yield
     print("🛑 AutoPR backend shutting down")
 
