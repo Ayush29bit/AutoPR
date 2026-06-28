@@ -10,12 +10,18 @@ import os
 import re
 import hashlib
 import chromadb
-import google.generativeai as genai
+from google.genai import types as genai_types
  
 from backend.tools.file_tools import list_repo_files, read_file
 from backend.core.config import settings
 
-genai.configure(api_key=settings.GOOGLE_API_KEY)
+_client = None
+
+def get_genai__client():
+    global _client
+    if _client is None:
+        _client = genai_types.Client(api_key=settings.GOOGLE_API_KEY)
+    return _client
  
 # ChromaDB client 
 _chroma_client = None
