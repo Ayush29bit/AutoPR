@@ -10,6 +10,7 @@ import os
 import re
 import hashlib
 import chromadb
+from google import genai 
 from google.genai import types as genai_types
  
 from backend.tools.file_tools import list_repo_files, read_file
