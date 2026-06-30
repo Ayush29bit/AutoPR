@@ -49,13 +49,13 @@ print("\n[3] Testing Google Embeddings...")
 try:
     from google import genai 
     from google.genai import types as genai_types 
-    client = genai_types.Client(api_key=settings.GOOGLE_API_KEY)
+    client = genai.Client(api_key=settings.GOOGLE_API_KEY)
     result = client.models.embed_content(
         model=settings.GOOGLE_EMBEDDING_MODEL,
-        content="test embedding",
-        task_type="retrieval_document",
+        contents="test embedding",
+        config = genai_types.EmbedContentConfig(task_type="retrieval_document"),
     )
-    dims = len(result["embedding"])
+    dims = len(result.embeddings[0].values)
     print(f"    ✓ Google embeddings working (dimensions: {dims})")
 except Exception as e:
     print(f"    ✗ Google embeddings failed: {e}")
