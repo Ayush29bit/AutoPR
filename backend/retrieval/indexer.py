@@ -21,7 +21,7 @@ _client = None
 def get_genai__client():
     global _client
     if _client is None:
-        _client = genai_types.Client(api_key=settings.GOOGLE_API_KEY)
+        _client = genai.Client(api_key=settings.GOOGLE_API_KEY)
     return _client
  
 # ChromaDB client 

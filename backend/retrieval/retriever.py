@@ -7,13 +7,12 @@ Queries ChromaDB for the top-K most relevant chunks
 Returns the chunks associated with files to pass to agents
 """
 
-import google.generativeai as genai
+from google import genai
+from google.genai import types as genai_types
 from collections import defaultdict
- 
-from backend.retrieval.indexer import get_chroma_client, _collection_name, index_repo
+import chromadb 
+from backend.retrieval.indexer import get_genai__client, get_chroma_client, _collection_name, index_repo
 from backend.core.config import settings
- 
-genai.configure(api_key=settings.GOOGLE_API_KEY)
  
  
 def _embed_query(text: str) -> list[float]:
@@ -22,12 +21,12 @@ def _embed_query(text: str) -> list[float]:
     Uses task_type='retrieval_query' — different from 'retrieval_document'
     used during indexing.
     """
-    result = genai.embed_content(
+    client = get_genai__client()
+    result = client.models.embed_content(
         model=settings.GOOGLE_EMBEDDING_MODEL,
-        content=text,
-        task_type="retrieval_query",
+        contents=[text] 
     )
-    return result["embedding"]
+    return result.embeddings[0].values
  
  
 def retrieve_relevant_chunks(
